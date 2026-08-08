@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Platform
+  - MapFragment
+  - Obstacle
+  - Enemy
+  - DeathZone
   layers:
   - Default
   - TransparentFX
@@ -12,11 +17,11 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Ground
+  - Collectible
+  - Hazard
+  - PlayerAttack
   - 
   - 
   - 
