@@ -136,8 +136,8 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
-    customPivotPosition: {x: 0.5, y: 0.5}
+    defaultPivotAlignment: 9
+    customPivotPosition: {x: 0.5, y: 0}
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
@@ -151,8 +151,8 @@ ScriptedImporter:
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
-    defaultPivotAlignment: 7
-    customPivotPosition: {x: 0.5, y: 0.5}
+    defaultPivotAlignment: 9
+    customPivotPosition: {x: 0.5, y: 0}
     mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
@@ -161,7 +161,7 @@ ScriptedImporter:
     addShadowCasters: 0
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
-  platformSettingsDirtyTick: 639217021167685574
+  platformSettingsDirtyTick: 639218245356863504
   singleSpriteImportData:
   - name: 
     originalName: 

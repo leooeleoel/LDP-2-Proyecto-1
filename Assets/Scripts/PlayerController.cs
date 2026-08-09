@@ -1,43 +1,98 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(SpriteAnimator))]
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 5;
-    private Rigidbody2D rb2D;
-    public float jumpForce = 4;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float jumpForce = 12f;
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.6f, 0.15f);
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Sprite idleSprite;
+    [SerializeField] private Transform attackPoint;
+    [SerializeField] private float horizontalLimit = 2.5f;
+    [SerializeField] private float coyoteTime = 0.1f;
+    private float coyoteTimer;
+
+    private Rigidbody2D rb;
+    private SpriteAnimator spriteAnimator;
+    private float horizontalInput;
     private bool isGrounded;
-    public Transform groundCheck;
-    public float groundRadius = 0.1f;
-    public LayerMask groundLayer;
+    private bool facingRight = true;
 
-    private float move;
-    private Animator animator;
+    public bool IsAttacking { get; set; }
+    public bool IsGrounded => isGrounded;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
-        rb2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
+        spriteAnimator = GetComponent<SpriteAnimator>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        move = Input.GetAxisRaw("Horizontal");
-        rb2D.linearVelocity = new Vector2(move*speed, rb2D.linearVelocity.y);
-        if (move != 0)
-            transform.localScale = new Vector3(0.5f * Mathf.Sign(move), 0.5f, 1);
-        if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded)
+        horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        if (Input.GetButtonDown("Jump") && coyoteTimer > 0f)
         {
-            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, jumpForce);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+            coyoteTimer = 0f;
         }
-        animator.SetFloat("Speed", Mathf.Abs(move));
-        animator.SetFloat("VerticalVelocity", rb2D.linearVelocity.y);
-        animator.SetBool("isGrounded", isGrounded);
+        if (horizontalInput > 0 && !facingRight) Flip();
+        else if (horizontalInput < 0 && facingRight) Flip();
 
+        UpdateAnimation();
     }
+
     private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
+        isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, groundLayer);
+        if (isGrounded) coyoteTimer = coyoteTime;
+        else coyoteTimer -= Time.fixedDeltaTime;
+        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+        Vector3 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, -horizontalLimit, horizontalLimit);
+        transform.position = pos;
     }
+
+    private void UpdateAnimation()
+    {
+        if (IsAttacking) return;
+
+        if (!isGrounded)
+        {
+            spriteAnimator.Play("Jump");
+        }
+        else if (Mathf.Abs(horizontalInput) > 0.01f)
+        {
+            spriteAnimator.Play("Run");
+        }
+        else
+        {
+            spriteAnimator.PlayStatic(idleSprite);
+        }
+    }
+
+    private void Flip()
+    {
+        facingRight = !facingRight;
+        spriteAnimator.SetFacingDirection(facingRight);
+
+        if (attackPoint != null)
+        {
+            Vector3 pos = attackPoint.localPosition;
+            pos.x = Mathf.Abs(pos.x) * (facingRight ? 1f : -1f);
+            attackPoint.localPosition = pos;
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (groundCheck == null) return;
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
+    }
+
+
 }
