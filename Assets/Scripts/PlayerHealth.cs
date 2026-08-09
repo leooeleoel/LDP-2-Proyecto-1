@@ -90,4 +90,5 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         PlayerPrefs.SetInt("LastResult", 0);
         SceneManager.LoadScene("GameEnd");
     }
+
 }

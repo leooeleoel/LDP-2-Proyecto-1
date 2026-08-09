@@ -10,8 +10,13 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private int damage = 1;
     [SerializeField] private float attackCooldown = 0.4f;
 
+    [Header("Audio")]
+    [SerializeField] private AudioClip attackSound;
+
     private PlayerController playerController;
     private SpriteAnimator spriteAnimator;
+    private AudioSource audioSource;
+
     private float cooldownTimer;
     private bool hasDealtDamage;
 
@@ -19,14 +24,20 @@ public class PlayerAttack : MonoBehaviour
     {
         playerController = GetComponent<PlayerController>();
         spriteAnimator = GetComponent<SpriteAnimator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        if (cooldownTimer > 0f) cooldownTimer -= Time.deltaTime;
+        if (cooldownTimer > 0f)
+            cooldownTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.J) && cooldownTimer <= 0f && !playerController.IsAttacking)
+        if (Input.GetKeyDown(KeyCode.J) &&
+            cooldownTimer <= 0f &&
+            !playerController.IsAttacking)
+        {
             StartAttack();
+        }
 
         if (playerController.IsAttacking)
         {
@@ -46,23 +57,38 @@ public class PlayerAttack : MonoBehaviour
         playerController.IsAttacking = true;
         hasDealtDamage = false;
         cooldownTimer = attackCooldown;
+
         spriteAnimator.Play("Attack");
+
+        // Sonido del ataque
+        if (attackSound != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(attackSound);
+        }
     }
 
     private void DealDamage()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, hazardLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(
+            attackPoint.position,
+            attackRadius,
+            hazardLayer
+        );
 
         foreach (Collider2D hit in hits)
         {
             IDamageable target = hit.GetComponent<IDamageable>();
-            if (target != null) target.TakeDamage(damage);
+
+            if (target != null)
+                target.TakeDamage(damage);
         }
     }
 
     private void OnDrawGizmosSelected()
     {
-        if (attackPoint == null) return;
+        if (attackPoint == null)
+            return;
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }

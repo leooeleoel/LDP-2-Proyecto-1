@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Sprite idleSprite;
     [SerializeField] private Transform attackPoint;
-    [SerializeField] private float horizontalLimit = 2.5f;
+    [SerializeField] private float horizontalLimit = 10f;
     [SerializeField] private float coyoteTime = 0.1f;
     private float coyoteTimer;
 
@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     private float horizontalInput;
     private bool isGrounded;
     private bool facingRight = true;
+    private float knockbackTimer = 0f;
 
     public bool IsAttacking { get; set; }
     public bool IsGrounded => isGrounded;
@@ -48,9 +49,24 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         isGrounded = Physics2D.OverlapBox(groundCheck.position, groundCheckSize, 0f, groundLayer);
-        if (isGrounded) coyoteTimer = coyoteTime;
-        else coyoteTimer -= Time.fixedDeltaTime;
-        rb.linearVelocity = new Vector2(horizontalInput * moveSpeed, rb.linearVelocity.y);
+
+        if (isGrounded)
+            coyoteTimer = coyoteTime;
+        else
+            coyoteTimer -= Time.fixedDeltaTime;
+
+        if (knockbackTimer > 0f)
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(
+                horizontalInput * moveSpeed,
+                rb.linearVelocity.y
+            );
+        }
+
         Vector3 pos = transform.position;
         pos.x = Mathf.Clamp(pos.x, -horizontalLimit, horizontalLimit);
         transform.position = pos;
@@ -93,6 +109,14 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
     }
+    public void ApplyKnockback(float force, float upForce, float duration, float direction)
+    {
+        rb.linearVelocity = new Vector2(
+            direction * force,
+            upForce
+        );
 
+        knockbackTimer = duration;
+    }
 
 }

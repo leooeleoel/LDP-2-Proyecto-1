@@ -1,0 +1,132 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3424299260587186706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2279118858200450880}
+  - component: {fileID: 3789966534495279344}
+  - component: {fileID: 314131826915917791}
+  - component: {fileID: 5999436391764886313}
+  - component: {fileID: 4873808736015378901}
+  m_Layer: 0
+  m_Name: PlatformGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2279118858200450880
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424299260587186706}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.89, y: 6.49, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3789966534495279344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424299260587186706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9ad3ffa565b5a43b454ce54c7866c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformGenerator
+  flippedPlatformChance: 0.51
+  minVerticalDistance: 1
+  maxVerticalDistance: 2
+  minX: -8.5
+  maxX: 8.5
+  startHeight: 1
+  initialPlatforms: 10
+  generationAhead: 10
+  deleteDistanceBelowCamera: 5
+  flipRarePlatforms: 0
+  platformSelector: {fileID: 314131826915917791}
+  platformValidator: {fileID: 5999436391764886313}
+  obstacleGenerator: {fileID: 4873808736015378901}
+--- !u!114 &314131826915917791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424299260587186706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18eb8763b52e1e54b905fbb7fc3d0e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformSelector
+  normalPlatforms:
+  - prefab: {fileID: 0}
+    priority: 3
+  - prefab: {fileID: 0}
+    priority: 9
+  - prefab: {fileID: 0}
+    priority: 9
+  - prefab: {fileID: 0}
+    priority: 6
+  rarePlatforms:
+  - prefab: {fileID: 205640571122053041, guid: 69e27bc53be4a5946ae7f9a8651e8ba6, type: 3}
+    priority: 0
+  rarePlatformChance: 0.11
+--- !u!114 &5999436391764886313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424299260587186706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce5e51e35a9bf3d4cb8f00fcea921f18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformValidator
+  minHorizontalGap: 1
+  samePlatformMinDistance: 4
+  maxReachX: 2.2
+  maxReachY: 1.8
+  preferredMinHorizontalDistance: 1.5
+  preferredMaxHorizontalDistance: 3
+  verticalPathChance: 0.1
+--- !u!114 &4873808736015378901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3424299260587186706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5818f8bee343aca4f88d930352c7e76a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformObstacleGenerator
+  obstaclePrefabs:
+  - {fileID: 0}
+  obstacleChance: 1
+  obstacleSafeSpace: 1.4
+  obstacleHeightFromPath: 0
+  obstacleVerticalOffset: -0.4
+  minVerticalDistance: 1.5
+  preferredMinHorizontalDistance: 1.5
+  maxReachX: 3
+  maxReachY: 2.5
+  minX: -5
+  maxX: 5
+  obstaclePositionMinDistance: 2.5
+  obstaclePositionAttempts: 20
