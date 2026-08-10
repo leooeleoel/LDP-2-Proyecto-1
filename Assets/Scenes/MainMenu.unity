@@ -1055,7 +1055,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: El Caballero Perdido
+  m_text: EL CABALLERO PERDIDO
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cb026298da8769a42a36981aec5e49bc, type: 2}
   m_sharedMaterial: {fileID: -5143155267624730972, guid: cb026298da8769a42a36981aec5e49bc, type: 2}
