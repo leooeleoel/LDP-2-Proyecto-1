@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2587213490674348325}
   - component: {fileID: 5980327339558035214}
   m_Layer: 3
-  m_Name: Plataforma_4 (1)
+  m_Name: PlataformaRH
   m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -282,6 +282,22 @@ PrefabInstance:
     - target: {fileID: 4365435258668639253, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359635771295684487, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359635771295684487, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
+      propertyPath: maxHealth
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359635771295684487, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
+      propertyPath: chaseSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359635771295684487, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
+      propertyPath: knockbackForce
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
