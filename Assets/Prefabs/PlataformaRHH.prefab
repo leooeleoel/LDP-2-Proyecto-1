@@ -221,6 +221,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5359635771295684487, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
+      propertyPath: attackDistance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359635771295684487, guid: 1bbea138c8049784dacac62851d6e293, type: 3}
       propertyPath: knockbackForce
       value: 8
       objectReference: {fileID: 0}

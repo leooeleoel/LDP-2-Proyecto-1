@@ -31,4 +31,9 @@ public class GameManager : MonoBehaviour
     {
         FragmentsCollected += amount;
     }
+
+    public string GetSceneName()
+    {
+        return SelectedDifficulty == Difficulty.Dificil ? "GameH" : "GameF";
+    }
 }

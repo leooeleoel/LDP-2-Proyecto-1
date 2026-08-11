@@ -6,8 +6,12 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private int maxLives = 3;
     [SerializeField] private float invulnerabilityTime = 1f;
     [SerializeField] private Camera mainCamera;
-    [SerializeField] private float respawnScreenHeight = 0.5f;
+    [SerializeField] private float respawnScreenHeight = 0.75f;
     [SerializeField] private float respawnInvulnerabilityTime = 2f;
+
+    [Header("Caida suave tras respawn")]
+    [SerializeField] private float gravedadReducida = 0.8f;
+
     [Header("Audio")]
     [SerializeField] private AudioClip fallSound;
     private AudioSource audioSource;
@@ -18,6 +22,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private Rigidbody2D rb;
     private PlayerController playerController;
     private Vector3 lastSafePosition;
+
+    private float gravedadOriginal;
+    private bool cayendoSuave;
 
     public int CurrentLives => currentLives;
     public int MaxLives => maxLives;
@@ -31,12 +38,20 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         rb = GetComponent<Rigidbody2D>();
         playerController = GetComponent<PlayerController>();
         lastSafePosition = transform.position;
+
+        gravedadOriginal = rb.gravityScale;
     }
 
     private void Update()
     {
         if (playerController != null && playerController.IsGrounded && !IsInvulnerable)
             lastSafePosition = transform.position;
+
+        if (cayendoSuave && playerController != null && playerController.IsGrounded)
+        {
+            rb.gravityScale = gravedadOriginal;
+            cayendoSuave = false;
+        }
 
         if (invulnerabilityTimer > 0f)
         {
@@ -79,6 +94,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     {
         rb.linearVelocity = Vector2.zero;
 
+        rb.gravityScale = gravedadReducida;
+        cayendoSuave = true;
+
         if (mainCamera == null)
         {
             transform.position = lastSafePosition;
@@ -97,5 +115,4 @@ public class PlayerHealth : MonoBehaviour, IDamageable
         PlayerPrefs.SetInt("LastResult", 0);
         SceneManager.LoadScene("GameEnd");
     }
-
 }

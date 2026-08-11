@@ -32,7 +32,7 @@ public class PlayerAttack : MonoBehaviour
         if (cooldownTimer > 0f)
             cooldownTimer -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.J) &&
+        if (Input.GetMouseButtonDown(0) &&
             cooldownTimer <= 0f &&
             !playerController.IsAttacking)
         {

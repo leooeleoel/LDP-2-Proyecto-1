@@ -14,6 +14,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float horizontalLimit = 10f;
     [SerializeField] private float coyoteTime = 0.1f;
 
+    [Header("Controles")]
+    [SerializeField] private KeyCode saltarA = KeyCode.W;
+    [SerializeField] private KeyCode saltarB = KeyCode.UpArrow;
+    [SerializeField] private KeyCode derechaA = KeyCode.D;
+    [SerializeField] private KeyCode derechaB = KeyCode.RightArrow;
+    [SerializeField] private KeyCode izquierdaA = KeyCode.A;
+    [SerializeField] private KeyCode izquierdaB = KeyCode.LeftArrow;
+
     [Header("Audio")]
     [SerializeField] private AudioClip jumpSound;
     private AudioSource audioSource;
@@ -39,9 +47,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = LeerInputHorizontal();
 
-        if (Input.GetButtonDown("Jump") && coyoteTimer > 0f)
+        bool quiereSaltar = Input.GetKeyDown(saltarA) || Input.GetKeyDown(saltarB);
+
+        if (quiereSaltar && coyoteTimer > 0f)
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             coyoteTimer = 0f;
@@ -49,10 +59,21 @@ public class PlayerController : MonoBehaviour
             if (jumpSound != null && audioSource != null)
                 audioSource.PlayOneShot(jumpSound);
         }
+
         if (horizontalInput > 0 && !facingRight) Flip();
         else if (horizontalInput < 0 && facingRight) Flip();
 
         UpdateAnimation();
+    }
+
+    private float LeerInputHorizontal()
+    {
+        float valor = 0f;
+
+        if (Input.GetKey(derechaA) || Input.GetKey(derechaB)) valor += 1f;
+        if (Input.GetKey(izquierdaA) || Input.GetKey(izquierdaB)) valor -= 1f;
+
+        return valor;
     }
 
     private void FixedUpdate()

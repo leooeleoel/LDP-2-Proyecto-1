@@ -253,6 +253,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4d1057154ad7ef469c33c06ff0a8579, type: 3}
+--- !u!1 &395185885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395185887}
+  - component: {fileID: 395185886}
+  m_Layer: 0
+  m_Name: SceneMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &395185886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395185885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776ff462d5c8fb644abf7ee8d67d02d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
+  musicaDeEstaEscena: {fileID: 8300000, guid: e31985aebe18f064d887a8b4a7997382, type: 3}
+  volumen: 0.7
+--- !u!4 &395185887
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395185885}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 136.06235, y: 135.41223, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &502683589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 540165307852547002, guid: a4d1057154ad7ef469c33c06ff0a8579, type: 3}
@@ -986,8 +1032,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8183629428935410950, guid: 83ea8c861f4396a4b81ee2ee74fa782f, type: 3}
+      propertyPath: recogerSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 203fe407a77cade44926cc7d95a1df1e, type: 3}
+    - target: {fileID: 8183629428935410950, guid: 83ea8c861f4396a4b81ee2ee74fa782f, type: 3}
       propertyPath: objetosTotales
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1665,9 +1715,21 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 5454505878737877368, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
+      propertyPath: gravedadReducida
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5454505878737877368, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
+      propertyPath: respawnScreenHeight
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 6231321509804683383, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
       propertyPath: m_Name
       value: Knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440717391885401804, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
+      propertyPath: saltarA
+      value: 119
       objectReference: {fileID: 0}
     - target: {fileID: 8440717391885401804, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
       propertyPath: jumpForce
@@ -1676,6 +1738,10 @@ PrefabInstance:
     - target: {fileID: 8440717391885401804, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
       propertyPath: moveSpeed
       value: 5.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440717391885401804, guid: 21a1cd226ca467e4a97ef28435f452b1, type: 3}
+      propertyPath: izquierdaA
+      value: 97
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1830,3 +1896,4 @@ SceneRoots:
   - {fileID: 781598743}
   - {fileID: 907814567}
   - {fileID: 1690979489}
+  - {fileID: 395185887}

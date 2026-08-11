@@ -1801,7 +1801,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1943783974}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: PlayFacil
+        m_MethodName: PlayDificil
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -48,7 +48,11 @@ public class GameEndController : MonoBehaviour
 
     public void Reintentar()
     {
-        SceneManager.LoadScene("Game");
+        string escena = GameManager.Instance != null
+            ? GameManager.Instance.GetSceneName()
+            : "GameF";
+
+        SceneManager.LoadScene(escena);
     }
 
     public void VolverAlMenu()
