@@ -13,6 +13,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float horizontalLimit = 10f;
     [SerializeField] private float coyoteTime = 0.1f;
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip jumpSound;
+    private AudioSource audioSource;
+
     private float coyoteTimer;
 
     private Rigidbody2D rb;
@@ -29,6 +34,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         spriteAnimator = GetComponent<SpriteAnimator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -39,6 +45,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
             coyoteTimer = 0f;
+
+            if (jumpSound != null && audioSource != null)
+                audioSource.PlayOneShot(jumpSound);
         }
         if (horizontalInput > 0 && !facingRight) Flip();
         else if (horizontalInput < 0 && facingRight) Flip();
@@ -109,6 +118,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(groundCheck.position, groundCheckSize);
     }
+
     public void ApplyKnockback(float force, float upForce, float duration, float direction)
     {
         rb.linearVelocity = new Vector2(
@@ -118,5 +128,4 @@ public class PlayerController : MonoBehaviour
 
         knockbackTimer = duration;
     }
-
 }

@@ -701,6 +701,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1666116384}
+        m_TargetAssemblyTypeName: ButtonClickSound, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &354218185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,6 +838,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1666116382}
         m_TargetAssemblyTypeName: GameEndController, Assembly-CSharp
         m_MethodName: VolverAlMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1666116384}
+        m_TargetAssemblyTypeName: ButtonClickSound, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1494,6 +1518,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1666116384}
+        m_TargetAssemblyTypeName: ButtonClickSound, Assembly-CSharp
+        m_MethodName: PlayClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &975146961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2126,6 +2162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1666116383}
   - component: {fileID: 1666116382}
+  - component: {fileID: 1666116384}
   m_Layer: 0
   m_Name: GameEndController
   m_TagString: Untagged
@@ -2148,6 +2185,10 @@ MonoBehaviour:
   panelDerrota: {fileID: 439636216}
   panelVictoria: {fileID: 1949964356}
   panelVictoriaFinal: {fileID: 1407046379}
+  musicaDerrota: {fileID: 8300000, guid: fba52d92c0737c94c90fd4b9d6dd1e82, type: 3}
+  musicaVictoria: {fileID: 8300000, guid: 72515fe8cd603c243ac7e9aec7fce355, type: 3}
+  musicaVictoriaFinal: {fileID: 8300000, guid: 72515fe8cd603c243ac7e9aec7fce355, type: 3}
+  volumenMusica: 1
 --- !u!4 &1666116383
 Transform:
   m_ObjectHideFlags: 0
@@ -2163,6 +2204,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1666116384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666116381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cf09d368ed98d4da4f6dbb1a106922, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ButtonClickSound
 --- !u!1 &1668424032
 GameObject:
   m_ObjectHideFlags: 0
@@ -2250,6 +2303,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1666116382}
         m_TargetAssemblyTypeName: GameEndController, Assembly-CSharp
         m_MethodName: Reintentar
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1666116384}
+        m_TargetAssemblyTypeName: ButtonClickSound, Assembly-CSharp
+        m_MethodName: PlayClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

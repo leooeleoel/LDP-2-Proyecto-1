@@ -26,7 +26,6 @@ public class LevelCompleteChecker : MonoBehaviour
 
         bool allComplete =
             PlayerPrefs.GetInt("Level_Facil", 0) == 1 &&
-            PlayerPrefs.GetInt("Level_Medio", 0) == 1 &&
             PlayerPrefs.GetInt("Level_Dificil", 0) == 1;
 
         PlayerPrefs.SetInt("LastResult", allComplete ? 2 : 1);

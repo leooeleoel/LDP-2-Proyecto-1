@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public enum Difficulty { Facil, Medio, Dificil }
+    public enum Difficulty { Facil, Dificil }
 
     public static GameManager Instance { get; private set; }
 

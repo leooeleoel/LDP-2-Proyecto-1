@@ -8,6 +8,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     [SerializeField] private Camera mainCamera;
     [SerializeField] private float respawnScreenHeight = 0.5f;
     [SerializeField] private float respawnInvulnerabilityTime = 2f;
+    [Header("Audio")]
+    [SerializeField] private AudioClip fallSound;
+    private AudioSource audioSource;
 
     private int currentLives;
     private float invulnerabilityTimer;
@@ -23,6 +26,7 @@ public class PlayerHealth : MonoBehaviour, IDamageable
     private void Awake()
     {
         currentLives = maxLives;
+        audioSource = GetComponent<AudioSource>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         playerController = GetComponent<PlayerController>();
@@ -63,6 +67,9 @@ public class PlayerHealth : MonoBehaviour, IDamageable
             Die();
             return;
         }
+
+        if (fallSound != null && audioSource != null)
+            audioSource.PlayOneShot(fallSound);
 
         invulnerabilityTimer = respawnInvulnerabilityTime;
         Respawn();
